@@ -15,3 +15,4 @@ D:\c sharp projects\Reactivities\Application\obj\Debug\net9.0\Application.dll
 D:\c sharp projects\Reactivities\Application\obj\Debug\net9.0\refint\Application.dll
 D:\c sharp projects\Reactivities\Application\obj\Debug\net9.0\Application.pdb
 D:\c sharp projects\Reactivities\Application\obj\Debug\net9.0\ref\Application.dll
+D:\c sharp projects\Reactivities\Application\obj\Debug\net9.0\Application.sourcelink.json
