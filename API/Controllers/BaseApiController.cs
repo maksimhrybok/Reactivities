@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,5 +8,9 @@ namespace API.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
+        private IMediator? _mediator;
+
+        protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>() ?? throw new InvalidOperationException("Mediator not found");
+        // This is a base controller that can be used to handle common functionality for all controllers in the API.
     }
 }

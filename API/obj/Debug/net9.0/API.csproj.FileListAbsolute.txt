@@ -156,3 +156,5 @@ D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\runtimes\win-arm64\native\
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\c sharp projects\Reactivities\API\obj\Debug\net9.0\API.sourcelink.json
+D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\MediatR.dll
+D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\MediatR.Contracts.dll
