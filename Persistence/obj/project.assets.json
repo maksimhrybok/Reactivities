@@ -1156,8 +1156,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj"
+            "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
+              "projectPath": "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj"
             }
           }
         }
