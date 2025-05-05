@@ -4,14 +4,14 @@
     "D:\\c sharp projects\\Reactivities\\Persistence\\Persistence.csproj": {}
   },
   "projects": {
-    "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
+    "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
+        "projectPath": "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Max\\.nuget\\packages\\",
-        "outputPath": "d:\\c sharp projects\\Reactivities\\Domain\\obj\\",
+        "outputPath": "D:\\c sharp projects\\Reactivities\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Max\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -91,8 +91,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
-                "projectPath": "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj"
+              "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj"
               }
             }
           }

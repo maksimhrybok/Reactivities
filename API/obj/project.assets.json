@@ -3234,11 +3234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\c sharp projects\\Reactivities\\API\\API.csproj",
+      "projectUniqueName": "D:\\c sharp projects\\Reactivities\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "d:\\c sharp projects\\Reactivities\\API\\API.csproj",
+      "projectPath": "D:\\c sharp projects\\Reactivities\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Max\\.nuget\\packages\\",
-      "outputPath": "d:\\c sharp projects\\Reactivities\\API\\obj\\",
+      "outputPath": "D:\\c sharp projects\\Reactivities\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Max\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3256,8 +3256,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "d:\\c sharp projects\\Reactivities\\Application\\Application.csproj": {
-              "projectPath": "d:\\c sharp projects\\Reactivities\\Application\\Application.csproj"
+            "D:\\c sharp projects\\Reactivities\\Application\\Application.csproj": {
+              "projectPath": "D:\\c sharp projects\\Reactivities\\Application\\Application.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {}
+    "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
+    "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "d:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
+        "projectPath": "D:\\c sharp projects\\Reactivities\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Max\\.nuget\\packages\\",
-        "outputPath": "d:\\c sharp projects\\Reactivities\\Domain\\obj\\",
+        "outputPath": "D:\\c sharp projects\\Reactivities\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Max\\AppData\\Roaming\\NuGet\\NuGet.Config",

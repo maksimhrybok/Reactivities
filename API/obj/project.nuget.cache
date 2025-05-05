@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C+Z+eWt0Tvw=",
+  "dgSpecHash": "axXGYP3BJUk=",
   "success": true,
-  "projectFilePath": "d:\\c sharp projects\\Reactivities\\API\\API.csproj",
+  "projectFilePath": "D:\\c sharp projects\\Reactivities\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Max\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Max\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

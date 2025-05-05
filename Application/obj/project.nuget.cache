@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uJu7Ri56fk4=",
+  "dgSpecHash": "mJIPgPncMIQ=",
   "success": true,
-  "projectFilePath": "d:\\c sharp projects\\Reactivities\\Application\\Application.csproj",
+  "projectFilePath": "D:\\c sharp projects\\Reactivities\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Max\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Max\\.nuget\\packages\\mediatr\\12.5.0\\mediatr.12.5.0.nupkg.sha512",
