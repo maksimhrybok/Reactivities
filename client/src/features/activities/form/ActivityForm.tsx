@@ -3,9 +3,14 @@ import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 type Props = {
   activity?: Activity;
   closeForm: () => void;
+  submitForm: (activity: Activity) => void;
 };
 
-export default function ActivityForm({ activity, closeForm }: Props) {
+export default function ActivityForm({
+  activity,
+  closeForm,
+  submitForm,
+}: Props) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle form submission logic here
@@ -16,7 +21,12 @@ export default function ActivityForm({ activity, closeForm }: Props) {
       data[key] = value;
     });
 
-    console.log("Form submitted:", data);
+    if (activity) {
+      data.id = activity.id;
+    }
+
+    submitForm(data as unknown as Activity);
+    // closeForm();
   };
   return (
     <Paper sx={{ borderRadius: 3, padding: 3 }}>
