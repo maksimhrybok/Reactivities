@@ -14,7 +14,7 @@ namespace API.Controllers
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>() ?? throw new InvalidOperationException("Mediator not found");
         // This is a base controller that can be used to handle common functionality for all controllers in the API.
 
-        protected ActionResult<T> HandleResult<T>(Result<T> result)
+        protected ActionResult HandleResult<T>(Result<T> result)
         {
              if (!result.IsSuccess && result.Code == 404)
             {
@@ -22,7 +22,7 @@ namespace API.Controllers
             }
             if (result.IsSuccess && result.Value != null)
             {
-            return result.Value;
+            return Ok(result.Value);
             }
 
             return BadRequest(result.Error);
