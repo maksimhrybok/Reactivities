@@ -159,3 +159,5 @@ D:\c sharp projects\Reactivities\API\obj\Debug\net9.0\API.sourcelink.json
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\MediatR.dll
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\MediatR.Contracts.dll
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\AutoMapper.dll
+D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\FluentValidation.dll
+D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
