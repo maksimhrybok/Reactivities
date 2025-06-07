@@ -33,6 +33,8 @@ export type LocationIQAddress = {
   road?: string;
   neighbourhood?: string;
   suburb?: string;
+  town?: string;
+  village?: string;
   city?: string;
   county: string;
   state: string;
