@@ -10,3 +10,4 @@ D:\c sharp projects\Reactivities\Domain\obj\Debug\net9.0\refint\Domain.dll
 D:\c sharp projects\Reactivities\Domain\obj\Debug\net9.0\Domain.pdb
 D:\c sharp projects\Reactivities\Domain\obj\Debug\net9.0\ref\Domain.dll
 D:\c sharp projects\Reactivities\Domain\obj\Debug\net9.0\Domain.sourcelink.json
+D:\c sharp projects\Reactivities\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
