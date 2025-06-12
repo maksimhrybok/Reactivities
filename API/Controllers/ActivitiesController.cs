@@ -20,7 +20,7 @@ public class ActivitiesController : BaseApiController
     
   }
 
-  [Authorize]
+
   [HttpGet("{id}")]
   public async Task<ActionResult<Activity>> GetActivityDetail(string id)
   {
