@@ -9,17 +9,23 @@ import TestErrors from "../../features/activities/errors/TestErrors";
 import NotFound from "../../features/activities/errors/NotFound";
 import ServerError from "../../features/activities/errors/ServerError";
 import LoginForm from "../../features/activities/account/LoginForm";
+import RequireAuth from "./RequireAuth";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        element: <RequireAuth />,
+        children: [
+          { path: "activities", element: <ActivityDashboard /> },
+          { path: "activities/:id", element: <ActivityDetailPage /> },
+          { path: "createActivity", element: <ActivityForm key="create" /> },
+          { path: "manage/:id", element: <ActivityForm /> },
+        ],
+      },
       { path: "", element: <HomePage /> },
-      { path: "activities", element: <ActivityDashboard /> },
-      { path: "activities/:id", element: <ActivityDetailPage /> },
-      { path: "createActivity", element: <ActivityForm key="create" /> },
-      { path: "manage/:id", element: <ActivityForm /> },
       { path: "counter", element: <Counter /> },
       { path: "errors", element: <TestErrors /> },
       { path: "not-found", element: <NotFound /> },
