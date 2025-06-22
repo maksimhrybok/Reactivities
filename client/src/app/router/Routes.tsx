@@ -10,6 +10,7 @@ import NotFound from "../../features/activities/errors/NotFound";
 import ServerError from "../../features/activities/errors/ServerError";
 import LoginForm from "../../features/activities/account/LoginForm";
 import RequireAuth from "./RequireAuth";
+import RegisterForm from "../../features/activities/account/RegisterForm";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ export const router = createBrowserRouter([
       { path: "not-found", element: <NotFound /> },
       { path: "server-error", element: <ServerError /> },
       { path: "login", element: <LoginForm /> },
+      { path: "register", element: <RegisterForm /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },
