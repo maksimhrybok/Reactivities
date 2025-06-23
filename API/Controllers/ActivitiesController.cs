@@ -22,7 +22,7 @@ public class ActivitiesController : BaseApiController
 
 
   [HttpGet("{id}")]
-  public async Task<ActionResult<Activity>> GetActivityDetail(string id)
+  public async Task<ActionResult<ActivityDto>> GetActivityDetail(string id)
   {
     // throw new Exception("Server test error"); // This is just for testing purposes, remove in production
 
