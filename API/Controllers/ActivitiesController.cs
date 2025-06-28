@@ -17,7 +17,7 @@ public class ActivitiesController : BaseApiController
   public async Task<ActionResult<List<ActivityDto>>> GetActivities()
   {
     return await Mediator.Send(new GetActivityList.Query());
-    
+
   }
 
 
@@ -31,15 +31,15 @@ public class ActivitiesController : BaseApiController
   }
 
   [HttpPost]
-  public async Task<ActionResult<string>> CreateActivity( CreateActivityDto activityDto)
+  public async Task<ActionResult<string>> CreateActivity(CreateActivityDto activityDto)
   {
-    return HandleResult (await Mediator.Send(new CreateActivity.Command { ActivityDto = activityDto }));
+    return HandleResult(await Mediator.Send(new CreateActivity.Command { ActivityDto = activityDto }));
   }
 
   [HttpPut]
   public async Task<ActionResult> EditActivity(EditActivityDto activity)
   {
-    return HandleResult (await Mediator.Send(new EditActivity.Command { ActivityDto = activity }));
+    return HandleResult(await Mediator.Send(new EditActivity.Command { ActivityDto = activity }));
 
   }
 
@@ -47,6 +47,12 @@ public class ActivitiesController : BaseApiController
 
   public async Task<ActionResult> DeleteActivity(string id)
   {
-    return HandleResult (await Mediator.Send(new DeleteActivity.Command { Id = id }));
+    return HandleResult(await Mediator.Send(new DeleteActivity.Command { Id = id }));
+  }
+  
+  [HttpPost("{id}/attend")]
+  public async Task<ActionResult> Attend(string id)
+  {
+    return HandleResult(await Mediator.Send(new UpdateAttendance.Command { Id = id }));
   }
 }
