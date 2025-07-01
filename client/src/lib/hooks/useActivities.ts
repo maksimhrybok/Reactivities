@@ -73,13 +73,56 @@ export const useActivities = (id?: string) => {
 
   const updateAttendance = useMutation({
     mutationFn: async (id: string) => {
-      console.log("mutation id: " + id);
       await agent.post(`/activities/${id}/attend`);
     },
-    onSuccess: async () => {
-      console.log("query id: " + id);
-      // Invalidate and refetch
-      await queryClient.invalidateQueries({ queryKey: ["activities", id] });
+    onMutate: async (activityId: string) => {
+      await queryClient.cancelQueries({ queryKey: ["activities", activityId] });
+
+      const prevActivity = queryClient.getQueryData<Activity>([
+        "activities",
+        activityId,
+      ]);
+      queryClient.setQueryData<Activity>(
+        ["activities", activityId],
+        (oldActivity) => {
+          if (!oldActivity || !currentUser) return oldActivity;
+
+          const isHost = oldActivity.hostId === currentUser.id;
+          const isAttending = oldActivity.attendees.some(
+            (x) => x.id === currentUser.id
+          );
+
+          return {
+            ...oldActivity,
+            isCancelled: isHost
+              ? !oldActivity.isCancelled
+              : oldActivity.isCancelled,
+            attendees: isAttending
+              ? isHost
+                ? oldActivity.attendees
+                : oldActivity.attendees.filter((x) => x.id !== currentUser.id)
+              : [
+                  ...oldActivity.attendees,
+                  {
+                    id: currentUser.id,
+                    displayName: currentUser.displayName,
+                    imageUrl: currentUser.imageUrl,
+                  },
+                ],
+          };
+        }
+      );
+      return { prevActivity };
+    },
+    onError: (error, activityId, context) => {
+      console.log("prevActivity" + context?.prevActivity);
+      console.log("Error updating attendance:", error);
+      if (context?.prevActivity) {
+        queryClient.setQueryData(
+          ["activities", activityId],
+          context.prevActivity
+        );
+      }
     },
   });
 
