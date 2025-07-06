@@ -168,3 +168,5 @@ D:\c sharp projects\Reactivities\Api\bin\Debug\net9.0\Microsoft.Extensions.Ident
 D:\c sharp projects\Reactivities\Api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\Infrastructure.dll
 D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\Infrastructure.pdb
+D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\CloudinaryDotNet.dll
+D:\c sharp projects\Reactivities\API\bin\Debug\net9.0\Newtonsoft.Json.dll
