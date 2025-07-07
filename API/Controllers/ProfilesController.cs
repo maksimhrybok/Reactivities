@@ -1,5 +1,6 @@
 using System;
 using Application.Profiles.Commands;
+using Application.Profiles.Queries;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,5 +12,17 @@ public class ProfilesController : BaseApiController
   public async Task<ActionResult<Photo>> AddPhoto(IFormFile file)
   {
     return HandleResult(await Mediator.Send(new AddPhoto.Command { File = file }));
+  }
+
+  [HttpGet("{userId}/photos")]
+  public async Task<ActionResult<List<Photo>>> GetPhotoForUser(string userId)
+  {
+    return HandleResult(await Mediator.Send(new GetProfilePhotos.Query { UserId = userId }));
+  }
+
+  [HttpDelete("{photoId}/photos")]
+  public async Task<ActionResult> DeletePhoto(string photoId)
+  {
+    return HandleResult(await Mediator.Send(new DeletePhoto.Command { PhotoId = photoId }));
   }
 }
