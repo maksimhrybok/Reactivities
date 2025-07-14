@@ -10,7 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function ProfileHeader() {
+type Props = {
+  profile: Profile;
+};
+
+export default function ProfileHeader({ profile }: Props) {
   const isFollowing = true;
 
   return (
@@ -18,9 +22,13 @@ export default function ProfileHeader() {
       <Grid container spacing={2}>
         <Grid size={8}>
           <Stack direction="row" spacing={3} alignItems="center">
-            <Avatar sx={{ width: 150, height: 150 }} />
+            <Avatar
+              src={profile.imageUrl}
+              alt={profile.displayName + " image"}
+              sx={{ width: 150, height: 150 }}
+            />
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="h4">Display name</Typography>
+              <Typography variant="h4">{profile.displayName}</Typography>
               {isFollowing && (
                 <Chip
                   variant="outlined"
