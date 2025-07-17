@@ -3,6 +3,7 @@ import { useProfile } from "../../lib/hooks/useProfile";
 import {
   Box,
   Button,
+  Divider,
   ImageList,
   ImageListItem,
   Typography,
@@ -41,61 +42,71 @@ export default function ProfilePhotos() {
 
   return (
     <Box>
-      {isCurrentUser && (
-        <Button onClick={() => setEditMode(!editMode)}>
-          {editMode ? "Cancel" : "Add Photo"}
-        </Button>
-      )}
+      <Box display={"flex"} justifyContent="space-between">
+        <Typography variant="h5">Photos</Typography>
+        {isCurrentUser && (
+          <Button onClick={() => setEditMode(!editMode)}>
+            {editMode ? "Cancel" : "Add Photo"}
+          </Button>
+        )}
+      </Box>
+      <Divider sx={{ my: 2 }} />
       {editMode ? (
         <PhotoUploadWidget
           uploadPhoto={handleUpload}
           loading={uploadPhoto.isPending}
         />
       ) : (
-        <ImageList sx={{ height: 450 }} cols={6} rowHeight={164}>
-          {photos.map((item) => (
-            <ImageListItem key={item.id}>
-              <img
-                srcSet={`${item.url.replace(
-                  "/upload",
-                  "/upload/w_164,h_164,c_fill,f_auto,dpr_2,g_face/"
-                )}`}
-                src={`${item.url.replace(
-                  "/upload",
-                  "/upload/w_164,h_164,c_fill,f_auto,g_face/"
-                )}`}
-                alt={"user profile image"}
-                loading="lazy"
-              />
-              {isCurrentUser && (
-                <div>
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                    }}
-                    onClick={() => setMainPhoto.mutate(item)}
-                  >
-                    <StarButton selected={item.url === profile?.imageUrl} />
-                  </Box>
-                  {profile?.imageUrl !== item.url && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        right: 0,
-                      }}
-                      onClick={() => deletePhoto.mutate(item.id)}
-                    >
-                      <DeleteButton />
-                    </Box>
+        <>
+          {photos.length === 0 ? (
+            <Typography>No photos added yet</Typography>
+          ) : (
+            <ImageList sx={{ height: 450 }} cols={6} rowHeight={164}>
+              {photos.map((item) => (
+                <ImageListItem key={item.id}>
+                  <img
+                    srcSet={`${item.url.replace(
+                      "/upload",
+                      "/upload/w_164,h_164,c_fill,f_auto,dpr_2,g_face/"
+                    )}`}
+                    src={`${item.url.replace(
+                      "/upload",
+                      "/upload/w_164,h_164,c_fill,f_auto,g_face/"
+                    )}`}
+                    alt={"user profile image"}
+                    loading="lazy"
+                  />
+                  {isCurrentUser && (
+                    <div>
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                        }}
+                        onClick={() => setMainPhoto.mutate(item)}
+                      >
+                        <StarButton selected={item.url === profile?.imageUrl} />
+                      </Box>
+                      {profile?.imageUrl !== item.url && (
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            top: 0,
+                            right: 0,
+                          }}
+                          onClick={() => deletePhoto.mutate(item.id)}
+                        >
+                          <DeleteButton />
+                        </Box>
+                      )}
+                    </div>
                   )}
-                </div>
-              )}
-            </ImageListItem>
-          ))}
-        </ImageList>
+                </ImageListItem>
+              ))}
+            </ImageList>
+          )}
+        </>
       )}
     </Box>
   );
