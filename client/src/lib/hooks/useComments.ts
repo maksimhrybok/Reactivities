@@ -4,18 +4,23 @@ import {
   HubConnectionBuilder,
   HubConnectionState,
 } from "@microsoft/signalr"; // Adjust the import based on your actual signalr client library
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const useComments = (activityId?: string) => {
+  const created = useRef(false);
   const commentStore = useLocalObservable(() => ({
+    comments: [] as ChatComment[],
     hubConnection: null as HubConnection | null,
 
     createHubConnection(activityId: string) {
       if (!activityId) return;
       this.hubConnection = new HubConnectionBuilder()
-        .withUrl(`${import.meta.env.VITE_COMMENT_URL}?=${activityId}`, {
-          withCredentials: true,
-        })
+        .withUrl(
+          `${import.meta.env.VITE_COMMENTS_URL}?activityId=${activityId}`,
+          {
+            withCredentials: true,
+          }
+        )
         .withAutomaticReconnect()
         .build();
 
@@ -24,6 +29,12 @@ export const useComments = (activityId?: string) => {
         .catch((err) =>
           console.log("Error while establishing connection: ", err)
         );
+      this.hubConnection.on("LoadComments", (comments) => {
+        this.comments = comments;
+      });
+      this.hubConnection.on("ReceiveComment", (comment) => {
+        this.comments.unshift(comment);
+      });
     },
     stopHubConnection() {
       if (this.hubConnection?.state === HubConnectionState.Connected) {
@@ -37,12 +48,14 @@ export const useComments = (activityId?: string) => {
   }));
 
   useEffect(() => {
-    if (activityId) {
+    if (activityId && !created.current) {
       commentStore.createHubConnection(activityId);
+      created.current = true;
     }
 
     return () => {
       commentStore.stopHubConnection();
+      commentStore.comments = [];
     };
   }, [activityId, commentStore]);
 
