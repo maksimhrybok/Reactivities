@@ -5,6 +5,7 @@ import {
   HubConnectionState,
 } from "@microsoft/signalr"; // Adjust the import based on your actual signalr client library
 import { useEffect, useRef } from "react";
+import { runInAction } from "mobx";
 
 export const useComments = (activityId?: string) => {
   const created = useRef(false);
@@ -30,10 +31,14 @@ export const useComments = (activityId?: string) => {
           console.log("Error while establishing connection: ", err)
         );
       this.hubConnection.on("LoadComments", (comments) => {
-        this.comments = comments;
+        runInAction(() => {
+          this.comments = comments;
+        });
       });
       this.hubConnection.on("ReceiveComment", (comment) => {
-        this.comments.unshift(comment);
+        runInAction(() => {
+          this.comments.unshift(comment);
+        });
       });
     },
     stopHubConnection() {
@@ -59,5 +64,5 @@ export const useComments = (activityId?: string) => {
     };
   }, [activityId, commentStore]);
 
-  return commentStore;
+  return { commentStore };
 };

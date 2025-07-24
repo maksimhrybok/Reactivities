@@ -38,11 +38,11 @@ type User = {
 
 type ChatComment = {
   id: string;
-  body: string;
   createdAt: Date;
+  body: string;
   userId: string;
-  DisplayName: string;
-  ImageUrl?: string;
+  displayName: string;
+  imageUrl?: string;
 };
 
 type LocationIQSuggestion = {
