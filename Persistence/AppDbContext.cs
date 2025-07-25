@@ -12,6 +12,7 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<User>(op
   public required DbSet<ActivityAttendee> ActivityAttendees { get; set; }
   public required DbSet<Photo> Photos { get; set; }
   public required DbSet<Comment> Comments { get; set; }
+  public required DbSet<UserFollowing> UserFollowings { get; set; }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
@@ -28,19 +29,33 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<User>(op
       .WithMany(a => a.Attendees)
       .HasForeignKey(a => a.ActivityId);
 
+    builder.Entity<UserFollowing>(b =>
+    {
+      b.HasKey(k => new { k.ObserverId, k.TargetId });
+      b.HasOne(u => u.Observer)
+        .WithMany(f => f.Followings)
+        .HasForeignKey(f => f.ObserverId)
+        .OnDelete(DeleteBehavior.Cascade);
+
+      b.HasOne(u => u.Target)
+        .WithMany(f => f.Followers)
+        .HasForeignKey(f => f.TargetId)
+        .OnDelete(DeleteBehavior.Cascade);
+    });
+
     var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
       v => v.ToUniversalTime(),
       v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
 
-      foreach (var entityType in builder.Model.GetEntityTypes())
+    foreach (var entityType in builder.Model.GetEntityTypes())
+    {
+      foreach (var property in entityType.GetProperties())
       {
-        foreach (var property in entityType.GetProperties())
+        if (property.ClrType == typeof(DateTime))
         {
-          if (property.ClrType == typeof(DateTime))
-          {
-            property.SetValueConverter(dateTimeConverter);
-          }
+          property.SetValueConverter(dateTimeConverter);
         }
       }
+    }
   }
 }
