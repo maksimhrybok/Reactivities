@@ -13,16 +13,9 @@ namespace Application.Activities.Queries;
 
 public class GetActivityList
 {
-  private const int MaxPageSize = 50;
   public class Query : IRequest<Result<PagedList<ActivityDto, DateTime?>>>
   {
-    public DateTime? Cursor { get; set; }
-    private int _pageSize = 3;
-    public int PageSize
-    {
-      get => _pageSize;
-      set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
-    }
+    public required ActivityParams Params { get; set; }
   }
 
   public class Handler(AppDbContext context, IMapper mapper, IUserAccessor userAccessor) : IRequestHandler<Query, Result<PagedList<ActivityDto, DateTime?>>>
@@ -31,21 +24,28 @@ public class GetActivityList
     {
       var query = context.Activities
         .OrderBy(a => a.Date)
+        .Where(a => a.Date >= (request.Params.Cursor ?? request.Params.StartDate))
         .AsQueryable();
 
-      if (request.Cursor.HasValue)
+      if (!string.IsNullOrEmpty(request.Params.Filter))
       {
-        query = query.Where(a => a.Date > request.Cursor.Value);
+        query = request.Params.Filter switch
+        {
+          "isGoing" => query.Where(a => a.Attendees.Any(x => x.UserId == userAccessor.GetUserId())),
+          "isHost" => query.Where(x => x.Attendees.Any(a => a.IsHost && a.UserId == userAccessor.GetUserId())),
+          _ => query
+        };
       }
+      
+      var projectedActivities = query.ProjectTo<ActivityDto>(mapper.ConfigurationProvider,
+          new { currentUserId = userAccessor.GetUserId() });
 
-      var activities = await query
-        .Take(request.PageSize + 1)
-        .ProjectTo<ActivityDto>(mapper.ConfigurationProvider,
-          new { currentUserId = userAccessor.GetUserId() })
+      var activities = await projectedActivities
+        .Take(request.Params.PageSize + 1)
         .ToListAsync(cancellationToken);
 
       DateTime? nextCursor = null;
-      if (activities.Count > request.PageSize)
+      if (activities.Count > request.Params.PageSize)
       {
         nextCursor = activities.Last().Date;
         activities.RemoveAt(activities.Count - 1);
