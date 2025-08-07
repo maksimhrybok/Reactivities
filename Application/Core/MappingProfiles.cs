@@ -10,7 +10,7 @@ public class MappingProfiles : Profile
 {
   public MappingProfiles()
   {
-    string? currentUserId= null;
+    string? currentUserId = null;
     CreateMap<Activity, Activity>();
     CreateMap<CreateActivityDto, Activity>();
     CreateMap<EditActivityDto, Activity>();
@@ -39,6 +39,7 @@ public class MappingProfiles : Profile
       .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.User.DisplayName))
       .ForMember(d => d.UserId, o => o.MapFrom(s => s.User.Id))
       .ForMember(d => d.ImageUrl, o => o.MapFrom(s => s.User.ImageUrl));
+    CreateMap<Activity, UserActivityDto>();
   }
 }
  
