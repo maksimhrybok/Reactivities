@@ -1,1 +1,4 @@
-{}
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/2fc85395-170d-4540-a1ce-fbfd02c16850/resourceGroups/reactivities-rg/providers/Microsoft.Web/sites/reactivities-pinacolada",
+  "appService.deploySubpath": "API\\bin\\Publish"
+}
